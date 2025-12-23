@@ -12,8 +12,17 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     ElButton: typeof import('element-plus/es')['ElButton']
+    MobileCategoryNavigation: typeof import('./src/components/MobileCategoryNavigation.vue')['default']
     Navbar: typeof import('./src/components/Navbar.vue')['default']
+    PinLogin: typeof import('./src/components/PinLogin.vue')['default']
+    ProductCard: typeof import('./src/components/ProductCard.vue')['default']
+    ProductsListing: typeof import('./src/components/ProductsListing.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Sidebar: typeof import('./src/components/Sidebar.vue')['default']
+    Step1: typeof import('./src/components/Step1.vue')['default']
+    Step2: typeof import('./src/components/Step2.vue')['default']
+    Step3: typeof import('./src/components/Step3.vue')['default']
+    Step4: typeof import('./src/components/Step4.vue')['default']
   }
 }
