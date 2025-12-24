@@ -34,49 +34,83 @@ const days = Array.from({ length: 31 }, (_, i) => i + 1);
 <template>
     <div class="mt-16">
         <div class="mt-9 w-full bg-white p-6">
-            <!-- 上线时间 -->
-            <div class="flex items-center gap-14 mt-6">
+
+            <div class="flex flex-col md:flex-row md:items-center gap-14 mt-6">
                 <div class="flex items-center">
-                    <p class="whitespace-nowrap w-40 font-medium text-[22px]">期望上线时间：</p>
-                    <ElTooltip content="是否有硬性截止日期？（如：配合活动、财年结束）、关键里程碑：是否有重要的中间节点？">
-                        <img src="/src/assets/images/tooltip.png" alt="Tooltip" class="w-5 h-5 ml-2" />
+                    <p class="whitespace-nowrap  font-medium text-[22px]">期望上线时间：</p>
+                    <ElTooltip content="是否有硬性截止日期？（如：配合活动、财年结束）、关键里程碑：是否有重要的中间节点？" placement="top-start"
+                        effect="customized">
+                        <img src="/src/assets/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 " />
                     </ElTooltip>
                 </div>
 
-                <div class="flex gap-3">
-                    <!-- 年 -->
-                    <select v-model="stepData.date.year" class="bg-[#f5f6f8] px-4 py-3.5 rounded-lg">
-                        <option value="">年</option>
-                        <option v-for="year in years" :key="year" :value="year">{{ year }}</option>
-                    </select>
-
-                    <!-- 月 -->
-                    <select v-model="stepData.date.month" class="bg-[#f5f6f8] px-4 py-3.5 rounded-lg">
-                        <option value="">月</option>
-                        <option v-for="month in months" :key="month" :value="month">{{ month }}</option>
-                    </select>
-
-                    <!-- 日 -->
-                    <select v-model="stepData.date.day" class="bg-[#f5f6f8] px-4 py-3.5 rounded-lg">
-                        <option value="">日</option>
-                        <option v-for="day in days" :key="day" :value="day">{{ day }}</option>
-                    </select>
+                <div class="flex flex-col md:flex-row  gap-3">
+                    <el-select v-model="stepData.date.year" placeholder="年" class=" rounded-lg py-2 custom-select ">
+                        <el-option v-for="year in years" :key="year" :label="year" :value="year"></el-option>
+                    </el-select>
+                    <el-select v-model="stepData.date.month" placeholder="月" class=" rounded-lg py-2 custom-select ">
+                        <el-option v-for="month in months" :key="month" :value="month" :label="month"></el-option>
+                    </el-select>
+                    <el-select v-model="stepData.date.day" placeholder="日" class=" rounded-lg py-2 custom-select ">
+                        <el-option v-for="day in days" :key="day" :label="day" :value="day"></el-option>
+                    </el-select>
                 </div>
             </div>
 
-            <!-- 预算管控 -->
-            <div class="mt-11 flex items-center gap-14">
+
+            <div class="md:mt-11 mt-6 flex flex-col md:flex-row md:items-center gap-6 md:gap-14">
                 <label class="font-medium text-[22px] w-44">预算管控：</label>
-                <input type="text" v-model="stepData.budgetControll" placeholder="请填写大概预算"
-                    class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg w-3/4" />
+                <el-input v-model="stepData.budgetControll" clearable placeholder="请填写大概预算"
+                    class=" md:px-6  custom-input " />
             </div>
 
-            <!-- 其他内容 -->
-            <div class="my-11 flex items-center gap-14">
+
+
+
+            <div class="md:my-11 my-6 flex flex-col md:flex-row md:items-center gap-6 md:gap-14">
                 <label class="font-medium text-[22px] w-44">其他内容：</label>
-                <textarea v-model="stepData.other" placeholder="请填写其他内容"
-                    class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg w-3/4 h-40" />
+                <el-input type="textarea" clearable v-model="stepData.other" placeholder="请填写其他内容"
+                    class="custom-textarea md:px-6" />
             </div>
         </div>
     </div>
 </template>
+
+
+<style scoped>
+.custom-select :deep(.el-select__wrapper) {
+    background-color: #F3F8FE;
+    padding: 8px 16px;
+    box-shadow: none;
+    width: 160px;
+}
+
+.custom-select :deep(.el-select__selected-item) {
+    background-color: transparent;
+}
+
+.custom-textarea :deep(textarea.el-textarea__inner) {
+    background-color: #F3F8FE;
+    min-height: 160px;
+    padding: 16px 24px;
+
+
+}
+
+.custom-textarea :deep(.el-textarea) {
+    background-color: transparent;
+
+}
+
+
+.custom-input :deep(.el-input__wrapper) {
+    background-color: #F3F8FE;
+    height: 50px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.custom-input :deep(.el-input__inner) {
+    background-color: transparent;
+}
+</style>

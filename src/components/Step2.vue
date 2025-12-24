@@ -47,153 +47,215 @@ watch(
     <div class="mt-14">
         <h1 class="text-4xl font-medium">核心需求明细</h1>
 
-        <!-- 1. 项目介绍 -->
+
         <div class="mt-9 w-full bg-white p-6">
             <h2 class="font-medium text-[26px]">1、项目介绍</h2>
 
-            <div class="flex items-start gap-14 mt-14">
+            <div class="flex flex-col md:flex-row items-start gap-7 md:gap-14 mt-14">
                 <div class="flex items-center w-1/4">
                     <p class="whitespace-nowrap font-medium text-[22px]">开发的背景或原因：</p>
-                    <ElTooltip content="客户为什么要做这个项目？解决什么问题？抓住什么机会？当前业务是如何运作的？痛点在哪里？">
-                        <img src="/src/assets/images/tooltip.png" alt="Tooltip" class="w-5 h-5 ml-2" />
+                    <ElTooltip effect="customized" placement="top-start"
+                        content="（客户为什么要做这个项目？解决什么问题？抓住什么机会？当前业务是如何运作的？痛点在哪里？）">
+                        <img src="/src/assets/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
                     </ElTooltip>
                 </div>
-                <textarea v-model="stepData.reason" class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg w-3/4 h-40"
-                    placeholder="请填写开发的背景或原因" />
+                <el-input type="textarea" clearable v-model="stepData.reason" placeholder="请填写开发的背景或原因"
+                    class="custom-textarea w-3/4" />
             </div>
 
-            <div class="flex items-start gap-14 mt-6">
+            <div class="flex flex-col md:flex-row items-start gap-7 md:gap-14 mt-6">
                 <div class="flex items-center w-1/4">
                     <p class="whitespace-nowrap font-medium text-[22px]">核心目标：</p>
-                    <ElTooltip content="项目成功上线后，希望达到的具体、可衡量的目标是什么？">
-                        <img src="/src/assets/images/tooltip.png" alt="Tooltip" class="w-5 h-5 ml-2" />
+                    <ElTooltip effect="customized" placement="top-start"
+                        content="（项目成功上线后，希望达到的具体、可衡量的目标是什么？例如：将订单处理时间缩短30%，将客户转化率提升15%，实现业务全流程线上化等。）">
+                        <img src="/src/assets/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
                     </ElTooltip>
                 </div>
-                <textarea v-model="stepData.objective" class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg w-3/4 h-40"
-                    placeholder="请填写开发的核心目标" />
+                <el-input type="textarea" clearable v-model="stepData.objective" placeholder="请填写开发的核心目标"
+                    class="custom-textarea w-3/4" />
             </div>
 
-            <div class="flex items-start gap-14 mt-6">
+            <div class="flex flex-col md:flex-row items-start gap-7 md:gap-14 mt-6">
                 <div class="flex items-center w-1/4">
                     <p class="whitespace-nowrap font-medium text-[22px]">用户目标：</p>
-                    <ElTooltip content="软件给谁用？内部员工、终端消费者、特定商户？">
-                        <img src="/src/assets/images/tooltip.png" alt="Tooltip" class="w-5 h-5 ml-2" />
+                    <ElTooltip effect="customized" placement="top-start"
+                        content="（软件给谁用？内部员工、终端消费者、特定商户？请描述用户的基本特征和使用场景。)">
+                        <img src="/src/assets/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
                     </ElTooltip>
                 </div>
-                <textarea v-model="stepData.userGoal" class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg w-3/4 h-40"
-                    placeholder="请填写开发的用户目标" />
+                <el-input type="textarea" clearable v-model="stepData.userGoal" placeholder="请填写开发的用户目标"
+                    class="custom-textarea w-3/4" />
             </div>
 
-            <!-- 2. 核心范围与核心功能 -->
-            <div class="mt-14">
-                <h2 class="font-medium text-[26px]">2、核心范围与核心功能</h2>
 
-                <div class="flex items-start gap-14 mt-14">
+            <div class="mt-14">
+                <h2 class="font-medium text-[26px] whitespace-nowrap">2、核心范围与核心功能</h2>
+
+                <div class="flex flex-col md:flex-row items-start  mt-14">
                     <p class="whitespace-nowrap font-medium text-[22px] w-1/4">项目/产品名称：</p>
-                    <div class="w-3/4 flex items-center gap-20">
-                        <div class="flex items-center gap-8 w-1/2">
-                            <label class="whitespace-nowrap">暂定名称</label>
-                            <input v-model="stepData.projectName.provisionalName" type="text" placeholder="请填写暂定名称"
-                                class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg w-full" />
+                    <div class="w-full md:w-3/4 flex flex-col md:flex-row md:items-center mt-5 md:mt-0 gap-5 md:gap-20">
+                        <div class="flex items-center gap-3 md:w-1/2">
+                            <label class="whitespace-nowrap hidden md:block">暂定名称</label>
+                            <el-input v-model="stepData.projectName.provisionalName" clearable placeholder="请填写暂定名称"
+                                class="  custom-input " />
                         </div>
-                        <div class="flex items-center gap-8 w-1/2">
-                            <label class="whitespace-nowrap">正式名称</label>
-                            <input v-model="stepData.projectName.officialName" type="text" placeholder="请填写正式名称"
-                                class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg w-full" />
+                        <div class="flex items-center gap-3 md:w-1/2">
+                            <label class="whitespace-nowrap hidden md:block">正式名称</label>
+                            <el-input v-model="stepData.projectName.officialName" clearable placeholder="请填写正式名称"
+                                class="  custom-input " />
                         </div>
                     </div>
                 </div>
 
-                <div class="flex items-start gap-14 mt-14">
+                <div class="flex flex-col md:flex-row items-start gap-7 md:gap-14 mt-10">
                     <p class="whitespace-nowrap font-medium text-[22px] w-1/4">参考软件/APP：</p>
-                    <input v-model="stepData.referenceApp" type="text" placeholder="请填写参考软件名称或网址"
-                        class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg w-3/4" />
+                    <el-input v-model="stepData.referenceApp" clearable placeholder="请填写参考软件名称或网址"
+                        class="  custom-input " />
                 </div>
 
-                <div class="flex items-start gap-14 mt-14">
+                <div class="flex flex-col md:flex-row items-start gap-7 md:gap-14 mt-10">
                     <p class="whitespace-nowrap font-medium text-[22px] w-1/4">项目/产品核心功能：</p>
-                    <textarea v-model="stepData.coreFunctions" placeholder="请填写下项目/产品核心的功能"
-                        class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg w-3/4 h-40" />
+                    <el-input type="textarea" clearable v-model="stepData.coreFunctions" placeholder="请填写下项目/产品核心的功能"
+                        class="custom-textarea w-3/4" />
                 </div>
 
                 <!-- Development ecosystem checkboxes -->
-                <div class="flex items-start gap-14 mt-14">
+                <div class="flex flex-col md:flex-row items-start  mt-14">
                     <p class="whitespace-nowrap font-medium text-[22px] w-1/4">计划开发生态：</p>
-                    <div class="w-3/4 flex flex-wrap gap-6">
-                        <label class="flex items-center gap-2">
-                            <input type="checkbox" v-model="stepData.developmentEcosystem.web" />Web端
-                        </label>
-                        <label class="flex items-center gap-2">
-                            <input type="checkbox" v-model="stepData.developmentEcosystem.ios" />IOS移动端
-                        </label>
-                        <label class="flex items-center gap-2">
-                            <input type="checkbox" v-model="stepData.developmentEcosystem.android" />安卓移动端
-                        </label>
-                        <label class="flex items-center gap-2">
-                            <input type="checkbox" v-model="stepData.developmentEcosystem.wechatMiniProgram" />微信小程序
-                        </label>
-                        <label class="flex items-center gap-2">
-                            <input type="checkbox" v-model="stepData.developmentEcosystem.wechatOfficialAccount" />公众号
-                        </label>
-                        <label class="flex items-center gap-2">
-                            <input type="checkbox" v-model="stepData.developmentEcosystem.other" />其他
-                        </label>
-                        <input v-model="stepData.developmentEcosystem.otherText" type="text" placeholder="请填写其他开发生态"
-                            class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg w-full" />
+                    <div class="w-full md:w-3/4 grid grid-cols-2 md:grid-cols-5 md:gap-4">
+                        <el-checkbox v-model="stepData.developmentEcosystem.web" label="Web端" />
+
+                        <el-checkbox v-model="stepData.developmentEcosystem.ios" label="IOS移动端" />
+
+                        <el-checkbox v-model="stepData.developmentEcosystem.android" label="安卓移动端" />
+
+                        <el-checkbox v-model="stepData.developmentEcosystem.wechatMiniProgram" label="微信小程序" />
+
+                        <el-checkbox v-model="stepData.developmentEcosystem.wechatOfficialAccount" label="公众号" />
+
+                        <div class=" flex flex-col md:flex-row md:items-center gap-3 md:col-span-5">
+                            <el-checkbox v-model="stepData.developmentEcosystem.other" label="其他" />
+                            <el-input v-if="stepData.developmentEcosystem.other"
+                                v-model="stepData.developmentEcosystem.otherText" placeholder="请填写其他开发生态"
+                                class="custom-input w-full " />
+                        </div>
                     </div>
+
                 </div>
 
                 <!-- Page style -->
-                <div class="flex items-start gap-14 mt-14">
-                    <p class="whitespace-nowrap font-medium text-[22px] w-1/4">页面风格：</p>
-                    <div class="w-3/4 flex flex-wrap gap-6">
-                        <label class="flex items-center gap-2">
-                            <input type="checkbox" v-model="stepData.pageStyle.companySpecific" />公司或产品专属的UI或色彩要求
-                        </label>
-                        <label class="flex items-center gap-2">
-                            <input type="checkbox" v-model="stepData.pageStyle.other" />其他
-                        </label>
-                        <input v-model="stepData.pageStyle.otherText" type="text" placeholder="请填写偏向于哪种风格"
-                            class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg w-full" />
+                <div class="flex flex-col md:flex-row items-start  mt-14">
+                    <div class="flex items-center w-1/4">
+                        <p class="whitespace-nowrap font-medium text-[22px]">页面风格：</p>
+                        <ElTooltip effect="customized" placement="top-start" content="公司或产品的UI/商标/色彩要求">
+                            <img src="/src/assets/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
+                        </ElTooltip>
+                    </div>
+                    <div class="w-3/4 flex flex-col md:flex-row md:items-center gap-3 mt-3 md:mt-0 md:gap-6">
+                        <el-checkbox v-model="stepData.pageStyle.companySpecific" label="公司或产品专属的UI或色彩要求" />
+                        <el-checkbox v-model="stepData.pageStyle.other" label="其他" />
+                        <el-input v-if="stepData.pageStyle.other" v-model="stepData.pageStyle.otherText"
+                            placeholder="请填写偏向于哪种风格" class="custom-input w-full " />
                     </div>
                 </div>
 
-                <!-- Risk avoidance -->
-                <div class="flex items-start gap-14 mt-14">
-                    <p class="whitespace-nowrap font-medium text-[22px] w-1/4">风险规避：</p>
-                    <textarea v-model="stepData.riskAvoidance" class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg w-2/3 h-40"
-                        placeholder="请填写风险规避" />
+
+                <div class="flex flex-col md:flex-row items-start gap-7 md:gap-14 mt-14">
+                    <div class="flex items-center w-1/4">
+                        <p class="whitespace-nowrap font-medium text-[22px]">风险规避：</p>
+                        <ElTooltip effect="customized" placement="top-start" content="项目/产品禁忌/合规要求">
+                            <img src="/src/assets/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
+                        </ElTooltip>
+                    </div>
+                    <el-input type="textarea" clearable v-model="stepData.riskAvoidance" placeholder="请填写下风险规避"
+                        class="custom-textarea w-3/4" />
                 </div>
 
-                <!-- Technical preferences -->
+
                 <div class="mt-14">
                     <h2 class="font-medium text-[26px]">3、 技术与集成偏好</h2>
 
-                    <div class="flex items-start gap-14 mt-14">
-                        <p class="whitespace-nowrap font-medium text-[22px] w-1/4">域名及服务器：</p>
-                        <textarea v-model="stepData.technicalPreferences.domainAndServer" placeholder="请填写域名及服务器"
-                            class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg w-3/4 h-40" />
+                    <div class="flex flex-col md:flex-row items-start gap-7 md:gap-14 mt-14">
+                        <div class="flex items-center w-1/4">
+                            <p class="whitespace-nowrap font-medium text-[22px]">域名及服务器：</p>
+                            <ElTooltip effect="customized" placement="top-start" content="客户是否有可供使用的域名及服务器？以及相关的配置情况。">
+                                <img src="/src/assets/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
+                            </ElTooltip>
+                        </div>
+                        <el-input type="textarea" clearable v-model="stepData.technicalPreferences.domainAndServer"
+                            placeholder="请填写域名及服务器" class="custom-textarea w-3/4" />
                     </div>
 
-                    <div class="flex items-start gap-14 mt-6">
-                        <p class="whitespace-nowrap font-medium text-[22px] w-1/4">技术偏好：</p>
-                        <textarea v-model="stepData.technicalPreferences.techStack" placeholder="请填写技术偏好"
-                            class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg w-3/4 h-40" />
+                    <div class="flex flex-col md:flex-row items-start gap-7 md:gap-14 mt-6">
+                        <div class="flex items-center w-1/4">
+                            <p class="whitespace-nowrap font-medium text-[22px]">技术偏好：</p>
+                            <ElTooltip effect="customized" placement="top-start"
+                                content="客户是否有偏好的技术栈？（如：Java/Python， Vue/React， MySQL/PostgreSQL）">
+                                <img src="/src/assets/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
+                            </ElTooltip>
+                        </div>
+                        <el-input type="textarea" clearable v-model="stepData.technicalPreferences.techStack"
+                            placeholder="请填写技术偏好" class="custom-textarea w-3/4" />
                     </div>
 
-                    <div class="flex items-start gap-14 mt-6">
-                        <p class="whitespace-nowrap font-medium text-[22px] w-1/4">现有系统集成：</p>
-                        <textarea v-model="stepData.technicalPreferences.systemIntegration" placeholder="请填写系统集成"
-                            class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg w-3/4 h-40" />
+                    <div class="flex flex-col md:flex-row items-start gap-7 md:gap-14 mt-6">
+                        <div class="flex items-center w-1/4">
+                            <p class="whitespace-nowrap font-medium text-[22px]">现有系统集成：</p>
+                            <ElTooltip effect="customized" placement="top-start"
+                                content="是否需要与客户现有的系统（如：ERP、CRM、支付系统）对接？ 对方系统是否提供了接口文档？">
+                                <img src="/src/assets/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
+                            </ElTooltip>
+                        </div>
+                        <el-input type="textarea" clearable v-model="stepData.technicalPreferences.systemIntegration"
+                            placeholder="请填写现有系统集成" class="custom-textarea w-3/4" />
                     </div>
 
-                    <div class="flex items-start gap-14 mt-6">
+                    <div class="flex flex-col md:flex-row items-start gap-7 md:gap-14 mt-6">
                         <p class="whitespace-nowrap font-medium text-[22px] w-1/4">其他内容：</p>
-                        <textarea v-model="stepData.technicalPreferences.other" placeholder="请填写其他内容"
-                            class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg w-3/4 h-40" />
+                        <el-input type="textarea" clearable v-model="stepData.technicalPreferences.other"
+                            placeholder="请填写其他内容" class="custom-textarea w-3/4" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+<style scoped>
+.custom-textarea :deep(textarea.el-textarea__inner) {
+    background-color: #F3F8FE;
+    min-height: 160px;
+    padding: 16px 24px;
+
+
+}
+
+.custom-textarea :deep(.el-textarea) {
+    background-color: transparent;
+
+}
+
+
+.custom-input :deep(.el-input__wrapper) {
+    background-color: #F3F8FE;
+    height: 50px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.custom-input :deep(.el-input__inner) {
+    background-color: transparent;
+}
+
+
+:global(.el-popper.is-customized) {
+    padding: 6px 12px;
+    background: #22B4FF;
+    color: white;
+}
+
+:global(.el-popper.is-customized .el-popper__arrow::before) {
+    background: #22B4FF;
+    right: 0;
+}
+</style>

@@ -12,6 +12,13 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
+    ElDivider: typeof import('element-plus/es')['ElDivider']
+    ElInput: typeof import('element-plus/es')['ElInput']
+    ElOption: typeof import('element-plus/es')['ElOption']
+    ElSelect: typeof import('element-plus/es')['ElSelect']
+    ElStep: typeof import('element-plus/es')['ElStep']
+    ElSteps: typeof import('element-plus/es')['ElSteps']
     MobileCategoryNavigation: typeof import('./src/components/MobileCategoryNavigation.vue')['default']
     Navbar: typeof import('./src/components/Navbar.vue')['default']
     PinLogin: typeof import('./src/components/PinLogin.vue')['default']

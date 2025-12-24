@@ -8,7 +8,7 @@ const props = defineProps({
     },
 });
 
-// Local reactive form for Step 4
+
 const stepData = reactive({
     customerRequirements: "",
     negotiationIssues: "",
@@ -35,7 +35,7 @@ const stepData = reactive({
     additionalNotes: "",
 });
 
-// Sync data to parent (Records page)
+
 watch(
     stepData,
     (val) => {
@@ -56,94 +56,115 @@ const days = Array.from({ length: 31 }, (_, i) => i + 1);
         <h1 class="text-4xl font-medium">客户特殊需求</h1>
 
         <div class="mt-9 w-full bg-white p-6">
-            <!-- 客户特殊需求 -->
+
             <div class="flex items-start gap-14 mt-14">
                 <p class="w-1/4 font-medium text-[22px]">客户特殊需求：</p>
-                <textarea v-model="stepData.customerRequirements"
-                    class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg w-3/4 h-40" />
+                <el-input type="textarea" clearable v-model="stepData.customerRequirements" placeholder="请填写客户特殊需求"
+                    class="custom-textarea " />
             </div>
 
-            <!-- 洽谈遗留问题 -->
             <div class="flex items-start gap-14 mt-6">
                 <p class="w-1/4 font-medium text-[22px]">洽谈遗留问题：</p>
-                <textarea v-model="stepData.negotiationIssues" class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg w-3/4 h-40" />
+                <el-input type="textarea" clearable v-model="stepData.negotiationIssues" placeholder="请填写客户特殊需求"
+                    class="custom-textarea " />
             </div>
 
-            <!-- 潜在风险 -->
             <div class="flex items-start gap-14 mt-6">
                 <p class="w-1/4 font-medium text-[22px]">潜在风险点：</p>
-                <textarea v-model="stepData.potentialRisks" class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg w-3/4 h-40" />
+                <el-input type="textarea" clearable v-model="stepData.potentialRisks" placeholder="请填写客户特殊需求"
+                    class="custom-textarea " />
             </div>
 
-            <!-- 内部跟进 -->
+
             <div class="flex items-start gap-14 mt-6">
                 <p class="w-1/4 font-medium text-[22px]">内部跟进：</p>
+                <el-input type="textarea" clearable v-model="stepData.internalFollowUp" placeholder="请填写客户特殊需求"
+                    class="custom-textarea " />
+            </div>
+            <div class="flex items-start gap-5">
+                <div class="w-1/4" />
                 <div class="w-3/4">
-                    <textarea v-model="stepData.internalFollowUp"
-                        class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg w-full h-40" />
-
-                    <!-- 记录人 -->
-                    <div class="flex items-center gap-36 mt-6">
-                        <div class="flex items-center gap-6">
-                            <label>记录人</label>
-                            <input v-model="stepData.recorder.name" class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg" />
+                    <div class="flex items-center justify-between gap-36 mt-6">
+                        <div class="flex items-center w-full gap-6">
+                            <label class="whitespace-nowrap">记录人</label>
+                            <el-input v-model="stepData.recorder.name" clearable placeholder="请填写企业信息"
+                                class="  py-3.5 custom-input " />
                         </div>
-
-                        <!-- 记录时间 -->
                         <div class="flex items-center gap-6">
-                            <label>记录时间</label>
-                            <div class="flex gap-3">
-                                <select v-model="stepData.recorder.date.year"
-                                    class="bg-[#f5f6f8] px-4 py-3.5 rounded-lg">
-                                    <option value="">年</option>
-                                    <option v-for="y in years" :key="y" :value="y">{{ y }}</option>
-                                </select>
-                                <select v-model="stepData.recorder.date.month"
-                                    class="bg-[#f5f6f8] px-4 py-3.5 rounded-lg">
-                                    <option value="">月</option>
-                                    <option v-for="m in months" :key="m" :value="m">{{ m }}</option>
-                                </select>
-                                <select v-model="stepData.recorder.date.day"
-                                    class="bg-[#f5f6f8] px-4 py-3.5 rounded-lg">
-                                    <option value="">日</option>
-                                    <option v-for="d in days" :key="d" :value="d">{{ d }}</option>
-                                </select>
+                            <label class="whitespace-nowrap">记录时间</label>
+                            <div class="flex flex-col md:flex-row  gap-3">
+                                <el-select v-model="stepData.recorder.date.year" placeholder="年"
+                                    class=" rounded-lg py-2 custom-select ">
+                                    <el-option v-for="year in years" :key="year" :label="year"
+                                        :value="year"></el-option>
+                                </el-select>
+                                <el-select v-model="stepData.recorder.date.month" placeholder="月"
+                                    class=" rounded-lg py-2 custom-select ">
+                                    <el-option v-for="month in months" :key="month" :value="month"
+                                        :label="month"></el-option>
+                                </el-select>
+                                <el-select v-model="stepData.recorder.date.day" placeholder="日"
+                                    class=" rounded-lg py-2 custom-select ">
+                                    <el-option v-for="day in days" :key="day" :label="day" :value="day"></el-option>
+                                </el-select>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 客户信息 -->
             <div class="flex items-start gap-14 mt-11">
                 <p class="w-1/4 font-medium text-[22px]">客户信息：</p>
+
                 <div class="w-3/4">
-                    <div class="flex items-center gap-6">
-                        <input v-model="stepData.contactPerson.name" placeholder="姓名"
-                            class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg" />
-                        <select v-model="stepData.contactPerson.position" class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg">
-                            <option value="">职务</option>
-                            <option>经理</option>
-                            <option>主管</option>
-                            <option>专员</option>
-                            <option>其他</option>
-                        </select>
-                        <input v-model="stepData.contactPerson.phone" placeholder="电话"
-                            class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg" />
+                    <div class="grid grid-cols-3 gap-6">
+
+                        <div class="flex items-center ">
+                            <label class="whitespace-nowrap hidden md:flex">姓名：</label>
+                            <el-input v-model="stepData.contactPerson.name" clearable placeholder="请填写客户姓名"
+                                class="  py-3.5 rounded-lg custom-input" />
+                        </div>
+
+                        <div class="flex items-center ">
+                            <label class="whitespace-nowrap hidden md:flex">职务：</label>
+                            <el-select v-model="stepData.contactPerson.position" placeholder="请选择职务信息"
+                                class=" rounded-lg  custom-select2">
+                                <el-option label="经理" value="经理" />
+                                <el-option label="主管" value="主管" />
+                                <el-option label="专员" value="专员" />
+                                <el-option label="其他" value="其他" />
+                            </el-select>
+                        </div>
+
+                        <div class="flex items-center ">
+                            <label class="whitespace-nowrap hidden md:flex">电话：</label>
+                            <el-input v-model="stepData.contactPerson.phone" clearable type="number"
+                                placeholder="请输入联系方式" class="  py-3.5 rounded-lg custom-input" />
+                        </div>
+
+                        <div class="flex items-center ">
+                            <label class="whitespace-nowrap hidden md:flex">微信：</label>
+                            <el-input v-model="stepData.contactPerson.wechat" clearable placeholder="请输入客户微信"
+                                class="  py-3.5 rounded-lg custom-input" />
+                        </div>
+
                     </div>
 
-                    <div class="flex items-center gap-6 mt-5">
-                        <label>微信</label>
-                        <input v-model="stepData.contactPerson.wechat" class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg" />
-                    </div>
 
-                    <div class="h-px my-5 bg-[#eaeaea]" />
+
+                    <el-divider border-style="double" />
 
                     <div class="flex items-center gap-9">
-                        <input v-model="stepData.assistant.name" placeholder="助理姓名"
-                            class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg" />
-                        <input v-model="stepData.assistant.phone" placeholder="助理电话"
-                            class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg" />
+                        <div class="flex items-center ">
+                            <label class="whitespace-nowrap hidden md:flex">助理：</label>
+                            <el-input v-model="stepData.assistant.name" clearable placeholder="请填写助理姓名"
+                                class="  py-3.5 rounded-lg custom-input" />
+                        </div>
+                        <div class="flex items-center ">
+                            <label class="whitespace-nowrap hidden md:flex">电话：</label>
+                            <el-input v-model="stepData.assistant.phone" clearable type="number" placeholder="请填写助理电话"
+                                class="  py-3.5 rounded-lg custom-input" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -151,8 +172,57 @@ const days = Array.from({ length: 31 }, (_, i) => i + 1);
             <!-- 其他补充 -->
             <div class="flex items-start gap-14 mt-6">
                 <p class="w-1/4 font-medium text-[22px]">其他补充：</p>
-                <textarea v-model="stepData.additionalNotes" class="bg-[#f5f6f8] px-6 py-3.5 rounded-lg w-3/4 h-40" />
+                <el-input type="textarea" clearable v-model="stepData.additionalNotes" placeholder="请填写客户其他需求"
+                    class="custom-textarea " />
             </div>
         </div>
     </div>
 </template>
+
+<style scoped>
+.custom-select :deep(.el-select__wrapper) {
+    background-color: #F3F8FE;
+    padding: 8px 16px;
+    box-shadow: none;
+    width: 90px;
+}
+
+.custom-select :deep(.el-select__selected-item) {
+    background-color: transparent;
+}
+
+.custom-select2 :deep(.el-select__wrapper) {
+    background-color: #F3F8FE;
+    padding: 10px 18px;
+    box-shadow: none;
+}
+
+.custom-select2 :deep(.el-select__selected-item) {
+    background-color: transparent;
+}
+
+.custom-textarea :deep(textarea.el-textarea__inner) {
+    background-color: #F3F8FE;
+    min-height: 160px;
+    padding: 16px 24px;
+
+
+}
+
+.custom-textarea :deep(.el-textarea) {
+    background-color: transparent;
+
+}
+
+
+.custom-input :deep(.el-input__wrapper) {
+    background-color: #F3F8FE;
+    height: 50px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.custom-input :deep(.el-input__inner) {
+    background-color: transparent;
+}
+</style>
