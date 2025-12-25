@@ -57,42 +57,42 @@ const days = Array.from({ length: 31 }, (_, i) => i + 1);
 
         <div class="mt-9 w-full bg-white p-6">
 
-            <div class="flex items-start gap-14 mt-14">
-                <p class="w-1/4 font-medium text-[22px]">客户特殊需求：</p>
+            <div class="flex flex-col md:flex-row items-start gap-5 md:gap-14 mt-14">
+                <p class="md:md:w-1/4 font-medium text-[22px]">客户特殊需求：</p>
                 <el-input type="textarea" clearable v-model="stepData.customerRequirements" placeholder="请填写客户特殊需求"
                     class="custom-textarea " />
             </div>
 
-            <div class="flex items-start gap-14 mt-6">
-                <p class="w-1/4 font-medium text-[22px]">洽谈遗留问题：</p>
+            <div class="flex flex-col md:flex-row items-start gap-5 md:gap-14 mt-6">
+                <p class="md:md:w-1/4 font-medium text-[22px]">洽谈遗留问题：</p>
                 <el-input type="textarea" clearable v-model="stepData.negotiationIssues" placeholder="请填写客户特殊需求"
                     class="custom-textarea " />
             </div>
 
-            <div class="flex items-start gap-14 mt-6">
-                <p class="w-1/4 font-medium text-[22px]">潜在风险点：</p>
+            <div class="flex flex-col md:flex-row items-start gap-5 md:gap-14 mt-6">
+                <p class="md:md:w-1/4 font-medium text-[22px]">潜在风险点：</p>
                 <el-input type="textarea" clearable v-model="stepData.potentialRisks" placeholder="请填写客户特殊需求"
                     class="custom-textarea " />
             </div>
 
 
-            <div class="flex items-start gap-14 mt-6">
-                <p class="w-1/4 font-medium text-[22px]">内部跟进：</p>
+            <div class="flex flex-col md:flex-row items-start gap-5 md:gap-14 mt-6">
+                <p class="md:w-1/4 font-medium text-[22px]">内部跟进：</p>
                 <el-input type="textarea" clearable v-model="stepData.internalFollowUp" placeholder="请填写客户特殊需求"
                     class="custom-textarea " />
             </div>
-            <div class="flex items-start gap-5">
-                <div class="w-1/4" />
-                <div class="w-3/4">
-                    <div class="flex items-center justify-between gap-36 mt-6">
-                        <div class="flex items-center w-full gap-6">
+            <div class="flex flex-col md:flex-row items-start">
+                <div class=" w-[24%]" />
+                <div class="md:w-3/4 w-full">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-36 mt-6">
+                        <div class="flex flex-col md:flex-row md:items-center w-full gap-2 md:gap-6">
                             <label class="whitespace-nowrap">记录人</label>
                             <el-input v-model="stepData.recorder.name" clearable placeholder="请填写企业信息"
                                 class="  py-3.5 custom-input " />
                         </div>
-                        <div class="flex items-center gap-6">
+                        <div class="flex flex-col md:flex-row md:items-center gap-6">
                             <label class="whitespace-nowrap">记录时间</label>
-                            <div class="flex flex-col md:flex-row  gap-3">
+                            <div class="flex flex-col md:flex-row gap-3">
                                 <el-select v-model="stepData.recorder.date.year" placeholder="年"
                                     class=" rounded-lg py-2 custom-select ">
                                     <el-option v-for="year in years" :key="year" :label="year"
@@ -113,11 +113,11 @@ const days = Array.from({ length: 31 }, (_, i) => i + 1);
                 </div>
             </div>
 
-            <div class="flex items-start gap-14 mt-11">
-                <p class="w-1/4 font-medium text-[22px]">客户信息：</p>
+            <div class="flex flex-col md:flex-row items-start mt-11">
+                <p class="md:w-1/4 font-medium text-[22px]">客户信息：</p>
 
-                <div class="w-3/4">
-                    <div class="grid grid-cols-3 gap-6">
+                <div class="md:w-3/4 w-full">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
                         <div class="flex items-center ">
                             <label class="whitespace-nowrap hidden md:flex">姓名：</label>
@@ -154,7 +154,7 @@ const days = Array.from({ length: 31 }, (_, i) => i + 1);
 
                     <el-divider border-style="double" />
 
-                    <div class="flex items-center gap-9">
+                    <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-9">
                         <div class="flex items-center ">
                             <label class="whitespace-nowrap hidden md:flex">助理：</label>
                             <el-input v-model="stepData.assistant.name" clearable placeholder="请填写助理姓名"
@@ -170,8 +170,8 @@ const days = Array.from({ length: 31 }, (_, i) => i + 1);
             </div>
 
             <!-- 其他补充 -->
-            <div class="flex items-start gap-14 mt-6">
-                <p class="w-1/4 font-medium text-[22px]">其他补充：</p>
+            <div class="flex flex-col md:flex-row items-start gap-5 md:gap-14 mt-6">
+                <p class="md:w-1/4 font-medium text-[22px]">其他补充：</p>
                 <el-input type="textarea" clearable v-model="stepData.additionalNotes" placeholder="请填写客户其他需求"
                     class="custom-textarea " />
             </div>
@@ -187,9 +187,17 @@ const days = Array.from({ length: 31 }, (_, i) => i + 1);
     width: 90px;
 }
 
+@media (max-width: 768px) {
+    .custom-select:deep(.el-select__wrapper) {
+        width: 100%;
+    }
+}
+
 .custom-select :deep(.el-select__selected-item) {
     background-color: transparent;
 }
+
+
 
 .custom-select2 :deep(.el-select__wrapper) {
     background-color: #F3F8FE;

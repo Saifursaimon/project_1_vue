@@ -47,7 +47,7 @@ watch(stepData, (val) => {
             <h3 class="font-medium text-[26px] mb-12 hidden md:block">客信息</h3>
 
             <div class="space-y-6 ">
-                <div class="flex flex-col md:flex-row md:items-start gap-12">
+                <div class="flex flex-col md:flex-row md:items-start gap-5 md:gap-12">
                     <h3 class="font-medium text-[22px] md:w-1/5 whitespace-nowrap">客户全称/类型：</h3>
                     <div class="md:w-3/4 space-y-4">
                         <div>

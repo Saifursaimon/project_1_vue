@@ -9,7 +9,7 @@ import { RouterView } from 'vue-router';
     <div class="absolute inset-0 max-h-83.5 bg-no-repeat bg-top bg-contain"
       :style="{ backgroundImage: `url(${bg})` }" />
 
-    <div class="relative z-10 max-w-360 mx-auto px-10 ">
+    <div class="relative z-10 max-w-360 mx-auto px-7 md:px-10 ">
       <Navbar />
       <RouterView />
     </div>

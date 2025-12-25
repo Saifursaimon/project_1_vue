@@ -9,7 +9,7 @@ import Step4 from "@/components/Step4.vue";
 
 
 
-
+const router = useRouter();
 const authorized = ref(false);
 const step = ref(0);
 
@@ -55,6 +55,13 @@ const handleBack = () => {
 
 const handleFinalSubmit = () => {
     console.log(formData)
+    localStorage.setItem(
+        "record_form_data",
+        JSON.stringify(formData)
+    );
+
+    router.push("records/lists");
+
 };
 </script>
 
@@ -63,7 +70,7 @@ const handleFinalSubmit = () => {
     <PinLogin v-if="!authorized" loginType="record" @success="handleLoginSuccess" />
 
 
-    <div v-else class="p-5 md:mt-20">
+    <div v-else class="md:p-5 md:mt-20">
         <!-- Step indicator -->
         <div class="md:flex items-center gap-4 mb-8 hidden">
             <div v-for="(s, index) in steps" :key="index" class="flex-1 ">

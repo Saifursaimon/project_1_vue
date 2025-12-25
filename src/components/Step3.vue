@@ -35,7 +35,7 @@ const days = Array.from({ length: 31 }, (_, i) => i + 1);
     <div class="mt-16">
         <div class="mt-9 w-full bg-white p-6">
 
-            <div class="flex flex-col md:flex-row md:items-center gap-14 mt-6">
+            <div class="flex flex-col md:flex-row md:items-center gap-5 md:gap-14 mt-6">
                 <div class="flex items-center">
                     <p class="whitespace-nowrap  font-medium text-[22px]">期望上线时间：</p>
                     <ElTooltip content="是否有硬性截止日期？（如：配合活动、财年结束）、关键里程碑：是否有重要的中间节点？" placement="top-start"
@@ -83,6 +83,12 @@ const days = Array.from({ length: 31 }, (_, i) => i + 1);
     padding: 8px 16px;
     box-shadow: none;
     width: 160px;
+}
+
+@media (max-width: 768px) {
+    .custom-select:deep(.el-select__wrapper) {
+        width: 100%;
+    }
 }
 
 .custom-select :deep(.el-select__selected-item) {
