@@ -12,7 +12,9 @@ const links = [
 
 <template>
     <div class="py-10 flex items-center justify-between">
-        <img :src="logo" alt="Logo" class="h-20 w-20 md:w-51.75 md:h-8.25" />
+        <RouterLink to="/">
+            <img :src="logo" alt="Logo" class="h-20 w-20 md:w-51.75 md:h-8.25" />
+        </RouterLink>
         <div class="flex item-center gap-5 md:gap-16.75 font-medium">
             <RouterLink v-for="link in links" :key="link.path" :to="link.path" class="relative py-2"
                 active-class="text-[#22B4FF]">
