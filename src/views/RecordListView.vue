@@ -55,7 +55,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
-import addIcon from "/src/assets/images/add-icon.svg";
+import addIcon from "/images/add-icon.svg";
 
 const router = useRouter();
 const records = ref([]);

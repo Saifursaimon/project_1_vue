@@ -40,7 +40,7 @@ const days = Array.from({ length: 31 }, (_, i) => i + 1);
                     <p class="whitespace-nowrap  font-medium text-[22px]">期望上线时间：</p>
                     <ElTooltip content="是否有硬性截止日期？（如：配合活动、财年结束）、关键里程碑：是否有重要的中间节点？" placement="top-start"
                         effect="customized">
-                        <img src="/src/assets/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 " />
+                        <img src="/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 " />
                     </ElTooltip>
                 </div>
 

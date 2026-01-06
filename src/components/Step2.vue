@@ -56,7 +56,7 @@ watch(
                     <p class="whitespace-nowrap font-medium text-[22px]">开发的背景或原因：</p>
                     <ElTooltip effect="customized" placement="top-start"
                         content="（客户为什么要做这个项目？解决什么问题？抓住什么机会？当前业务是如何运作的？痛点在哪里？）">
-                        <img src="/src/assets/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
+                        <img src="/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
                     </ElTooltip>
                 </div>
                 <el-input type="textarea" clearable v-model="stepData.reason" placeholder="请填写开发的背景或原因"
@@ -68,7 +68,7 @@ watch(
                     <p class="whitespace-nowrap font-medium text-[22px]">核心目标：</p>
                     <ElTooltip effect="customized" placement="top-start"
                         content="（项目成功上线后，希望达到的具体、可衡量的目标是什么？例如：将订单处理时间缩短30%，将客户转化率提升15%，实现业务全流程线上化等。）">
-                        <img src="/src/assets/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
+                        <img src="/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
                     </ElTooltip>
                 </div>
                 <el-input type="textarea" clearable v-model="stepData.objective" placeholder="请填写开发的核心目标"
@@ -80,7 +80,7 @@ watch(
                     <p class="whitespace-nowrap font-medium text-[22px]">用户目标：</p>
                     <ElTooltip effect="customized" placement="top-start"
                         content="（软件给谁用？内部员工、终端消费者、特定商户？请描述用户的基本特征和使用场景。)">
-                        <img src="/src/assets/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
+                        <img src="/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
                     </ElTooltip>
                 </div>
                 <el-input type="textarea" clearable v-model="stepData.userGoal" placeholder="请填写开发的用户目标"
@@ -148,7 +148,7 @@ watch(
                     <div class="flex items-center w-1/4">
                         <p class="whitespace-nowrap font-medium text-[22px]">页面风格：</p>
                         <ElTooltip effect="customized" placement="top-start" content="公司或产品的UI/商标/色彩要求">
-                            <img src="/src/assets/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
+                            <img src="/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
                         </ElTooltip>
                     </div>
                     <div class="w-3/4 flex flex-col md:flex-row md:items-center gap-3 mt-3 md:mt-0 md:gap-6">
@@ -164,7 +164,7 @@ watch(
                     <div class="flex items-center w-1/4">
                         <p class="whitespace-nowrap font-medium text-[22px]">风险规避：</p>
                         <ElTooltip effect="customized" placement="top-start" content="项目/产品禁忌/合规要求">
-                            <img src="/src/assets/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
+                            <img src="/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
                         </ElTooltip>
                     </div>
                     <el-input type="textarea" clearable v-model="stepData.riskAvoidance" placeholder="请填写下风险规避"
@@ -179,7 +179,7 @@ watch(
                         <div class="flex items-center w-1/4">
                             <p class="whitespace-nowrap font-medium text-[22px]">域名及服务器：</p>
                             <ElTooltip effect="customized" placement="top-start" content="客户是否有可供使用的域名及服务器？以及相关的配置情况。">
-                                <img src="/src/assets/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
+                                <img src="/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
                             </ElTooltip>
                         </div>
                         <el-input type="textarea" clearable v-model="stepData.technicalPreferences.domainAndServer"
@@ -191,7 +191,7 @@ watch(
                             <p class="whitespace-nowrap font-medium text-[22px]">技术偏好：</p>
                             <ElTooltip effect="customized" placement="top-start"
                                 content="客户是否有偏好的技术栈？（如：Java/Python， Vue/React， MySQL/PostgreSQL）">
-                                <img src="/src/assets/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
+                                <img src="/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
                             </ElTooltip>
                         </div>
                         <el-input type="textarea" clearable v-model="stepData.technicalPreferences.techStack"
@@ -203,7 +203,7 @@ watch(
                             <p class="whitespace-nowrap font-medium text-[22px]">现有系统集成：</p>
                             <ElTooltip effect="customized" placement="top-start"
                                 content="是否需要与客户现有的系统（如：ERP、CRM、支付系统）对接？ 对方系统是否提供了接口文档？">
-                                <img src="/src/assets/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
+                                <img src="/images/tooltip.svg" alt="Tooltip" class="w-5 h-5 ml-2" />
                             </ElTooltip>
                         </div>
                         <el-input type="textarea" clearable v-model="stepData.technicalPreferences.systemIntegration"
