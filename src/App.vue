@@ -1,5 +1,5 @@
 <script setup>
-import bg from '@/assets/images/bg.svg'
+import bg from '/images/bg.svg'
 import Navbar from '@/components/Navbar.vue';
 import { RouterView } from 'vue-router';
 </script>
