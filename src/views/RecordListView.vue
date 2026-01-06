@@ -65,7 +65,7 @@ const loading = ref(false);
 const fetchRecords = async () => {
   loading.value = true;
   try {
-    const res = await fetch("/api/records");
+    const res = await fetch("https://backend-server-o6mn.onrender.com/records");
     const data = await res.json();
 
     // backend already sends DESC, but safe sort
@@ -96,7 +96,7 @@ const editRecord = (id) => {
 const downloadPDF = async (id) => {
   try {
     const res = await fetch(
-      `/api/records/${id}/download`
+      `https://backend-server-o6mn.onrender.com/records/${id}/download`
     );
 
     if (!res.ok) throw new Error("Download failed");

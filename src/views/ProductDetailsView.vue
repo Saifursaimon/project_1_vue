@@ -71,7 +71,7 @@ onMounted(async () => {
   try {
     state.isLoading = true
     const productId = route.params.id
-    const res = await fetch(`/api/products/${productId}`)
+    const res = await fetch(`https://backend-server-o6mn.onrender.com/products/${productId}`)
     const data = await res.json()
     state.product = data
     state.isLoading = false

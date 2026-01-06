@@ -55,7 +55,7 @@ const handleBack = () => {
 
 const handleFinalSubmit = async () => {
   try {
-    const res = await fetch("/api/records", {
+    const res = await fetch("https://backend-server-o6mn.onrender.com/records", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

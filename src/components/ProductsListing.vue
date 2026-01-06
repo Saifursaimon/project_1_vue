@@ -32,7 +32,7 @@ const filteredProducts = computed(() => {
 onMounted(async () => {
   try {
     state.loading = true
-    const res = await fetch('/api/products')
+    const res = await fetch('https://backend-server-o6mn.onrender.com/products')
     const data = await res.json()
     state.products = data
     state.loading = false
