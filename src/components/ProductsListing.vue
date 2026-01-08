@@ -1,18 +1,17 @@
 <template>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-5 items-start mb-12">
-    <ProductCard v-for="product in filteredProducts" :key="product?.id" :p="product" />
+    <ProductCard v-for="product in filteredProducts" :key="product.id" :p="product" />
   </div>
 </template>
 
 <script setup>
-import ProductCard from './ProductCard.vue';
-import { computed, onMounted, reactive } from 'vue';
-import { defineProps } from 'vue';
+import ProductCard from './ProductCard.vue'
+import { computed, onMounted, reactive, defineProps } from 'vue'
 
 const props = defineProps({
   categoryId: {
     type: String,
-    default: "all"
+    default: 'all'
   }
 })
 
@@ -21,15 +20,22 @@ const state = reactive({
   loading: true
 })
 
-
-const filteredProducts = computed(() => {
-  if (props.categoryId === 'all') {
-    return state.products
-  }
-  return state.products.filter((product) => product.categoryId === props.categoryId)
+/* ✅ SORT FIRST (latest → oldest) */
+const sortedProducts = computed(() => {
+  return [...state.products].sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  )
 })
 
-console.log(state.products)
+/* ✅ FILTER AFTER SORT */
+const filteredProducts = computed(() => {
+  if (props.categoryId === 'all') {
+    return sortedProducts.value
+  }
+  return sortedProducts.value.filter(
+    product => product.categoryId === props.categoryId
+  )
+})
 
 onMounted(async () => {
   try {
@@ -37,10 +43,10 @@ onMounted(async () => {
     const res = await fetch('https://backend-server-o6mn.onrender.com/products')
     const data = await res.json()
     state.products = data
-    state.loading = false
-
   } catch (error) {
-    console.log(error)
+    console.error(error)
+  } finally {
+    state.loading = false
   }
 })
 </script>

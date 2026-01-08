@@ -10,9 +10,15 @@ defineProps({
 <template>
   <RouterLink :to="`/products/${p.id}`"
     class="block bg-white transition-all duration-300 hover:scale-[1.01] cursor-pointer">
-    <div class="relative w-full  bg-[#F9FBFF] px-4 py-3 flex items-end justify-between">
+    <div class="relative w-full  bg-[#F9FBFF] px-4 py-3 flex items-end justify-between" :style="{
+      backgroundImage: p.thmbnl ? `url(${p.thmbnl})` : 'none',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
+    }">
+      <div v-if="p.thmbnl" class="absolute inset-0 bg-gray-900/20"></div>
       <!-- LEFT CONTENT -->
-      <div class="flex flex-col hover:scale-[1.01]">
+      <div class="flex flex-col hover:scale-[1.01] z-10">
         <!-- Title -->
         <h2 class="text-xl font-semibold leading-tight text-[#2da8ff]">
           分时APP<br />
@@ -27,7 +33,7 @@ defineProps({
       </div>
 
       <!-- RIGHT IMAGE -->
-      <div>
+      <div class="z-10">
         <img src="/images/app-card.svg" alt="app preview" class="w-20 h-20" />
       </div>
 
