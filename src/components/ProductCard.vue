@@ -1,6 +1,9 @@
 <script setup>
 import { RouterLink } from "vue-router";
 
+defineProps({
+  p: Object
+})
 
 </script>
 

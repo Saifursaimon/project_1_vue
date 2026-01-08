@@ -1,6 +1,6 @@
 <template>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-5 items-start mb-12">
-    <ProductCard v-for="product in filteredProducts" :key="product.id" :p="product" />
+    <ProductCard v-for="product in filteredProducts" :key="product?.id" :p="product" />
   </div>
 </template>
 
@@ -28,6 +28,8 @@ const filteredProducts = computed(() => {
   }
   return state.products.filter((product) => product.categoryId === props.categoryId)
 })
+
+console.log(state.products)
 
 onMounted(async () => {
   try {
