@@ -5,7 +5,7 @@ import { RouterView } from 'vue-router';
 </script>
 
 <template>
-  <div class="relative min-h-screen bg-[#EEF5FD] ">
+  <div class="relative min-h-screen bg-[#EEF5FD] max-w-360 mx-auto overflow-hidden">
     <div class="absolute inset-0 max-h-83.5 bg-no-repeat bg-top bg-contain"
       :style="{ backgroundImage: `url(${bg})` }" />
 
