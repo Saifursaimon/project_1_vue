@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mt-3">
     <h2 class="font-medium hidden md:block text-[28px]">业务分类</h2>
     <div class="flex md:hidden">
       <MobileCategoryNavigation :selectedCategory="selectedCategory" @selectCategory="handleSelectCategory" />
