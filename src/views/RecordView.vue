@@ -111,11 +111,11 @@ const handleFinalSubmit = async () => {
     <!-- Buttons -->
     <div class="flex justify-center md:justify-end mt-5 gap-3">
       <button v-if="step > 0" @click="handleBack"
-        class="px-10 py-4 bg-[#EDF4FF] text-[#22B4FF] border-[#22B4FF] border rounded-lg">
+        class="px-10 py-4 bg-[#EDF4FF] text-[#22B4FF] border-[#22B4FF] border rounded-lg cursor-pointer">
         上一页
       </button>
 
-      <button @click="handleNext" class="px-10 py-4 bg-[#22B4FF] text-white rounded-lg">
+      <button @click="handleNext" class="px-10 py-4 bg-[#22B4FF] text-white rounded-lg cursor-pointer">
         {{ step === steps.length - 1 ? "保存" : "下一页" }}
       </button>
     </div>

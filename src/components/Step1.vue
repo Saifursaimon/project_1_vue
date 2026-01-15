@@ -43,12 +43,38 @@ const selectType = (value) => {
   // clear fields based on disabled logic
   if (stepData.type !== "企业") {
     stepData.companyName = "";
+    stepData.department = "";
   }
   if (stepData.type !== "个人") {
     stepData.personalName = "";
-    stepData.department = "";
+
   }
 };
+
+const selectCollab = (key) => {
+  Object.keys(stepData.collab).forEach((k) => {
+    if (k !== "projectHistory") {
+      stepData.collab[k] = false;
+      stepData.collab.projectHistory = "";
+    }
+  });
+  stepData.collab[key] = true;
+};
+
+const selectPlatform = (key) => {
+  Object.keys(stepData.discussionPlatform).forEach((k) => {
+    stepData.discussionPlatform[k] = false;
+  });
+
+  stepData.discussionPlatform[key] = true;
+
+  if (key == "other") {
+    stepData.discussionPlatform.otherText = "";
+  } else {
+    stepData.discussionPlatform.otherText = "";
+  }
+};
+
 
 // Sync reactive data to parent
 watch(
@@ -92,7 +118,7 @@ watch(
                 <!-- 部门 -->
                 <div class="flex items-center gap-3 w-full">
                   <label class="whitespace-nowrap hidden md:flex">所属部门:</label>
-                  <el-select v-model="stepData.department" placeholder="请选择部门" :disabled="stepData.type !== '个人'"
+                  <el-select v-model="stepData.department" placeholder="请选择部门" :disabled="stepData.type !== '企业'"
                     class="rounded-lg md:px-4 py-2 custom-select">
                     <el-option label="研发" value="研发" />
                     <el-option label="市场" value="市场" />
@@ -160,14 +186,18 @@ watch(
           <div class="md:w-3/4 flex flex-col gap-4 mt-5 md:mt-0">
             <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-7">
               <div class="flex item-center gap-3 md:gap-7">
-                <el-checkbox v-model="stepData.collab.firstTime">首次合作</el-checkbox>
-                <el-checkbox v-model="stepData.collab.repeat">复购</el-checkbox>
+                <el-checkbox :model-value="stepData.collab.firstTime" @change="selectCollab('firstTime')">
+                  首次合作
+                </el-checkbox>
+                <el-checkbox :model-value="stepData.collab.repeat" @change="selectCollab('repeat')">
+                  复购
+                </el-checkbox>
               </div>
 
               <div class="flex items-center w-full">
                 <label class="whitespace-nowrap hidden md:flex">历史项目：</label>
-                <el-input v-model="stepData.collab.projectHistory" clearable placeholder="请填写历史合作或项目编号"
-                  class="md:px-6 py-3.5 rounded-lg w-full custom-input" />
+                <el-input v-model="stepData.collab.projectHistory" :disabled="!stepData.collab.repeat" clearable
+                  placeholder="请填写历史合作或项目编号" class="md:px-6 py-3.5 rounded-lg w-full custom-input" />
               </div>
             </div>
           </div>
@@ -178,12 +208,19 @@ watch(
           <h3 class="font-medium text-[22px] md:w-1/5">洽谈方式/平台：</h3>
 
           <div class="md:w-1/2 grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-2 mt-5 md:mt-0">
-            <el-checkbox v-model="stepData.discussionPlatform.companyOffice">公司办公室</el-checkbox>
-            <el-checkbox v-model="stepData.discussionPlatform.clientOffice">客户办公室</el-checkbox>
-            <el-checkbox v-model="stepData.discussionPlatform.videoCall">远程视频</el-checkbox>
+            <el-checkbox v-model="stepData.discussionPlatform.companyOffice"
+              :model-value="stepData.discussionPlatform.companyOffice"
+              @change="selectPlatform('companyOffice')">公司办公室</el-checkbox>
+            <el-checkbox v-model="stepData.discussionPlatform.clientOffice"
+              :model-value="stepData.discussionPlatform.clientOffice"
+              @change="selectPlatform('clientOffice')">客户办公室</el-checkbox>
+            <el-checkbox v-model="stepData.discussionPlatform.videoCall"
+              :model-value="stepData.discussionPlatform.videoCall"
+              @change="selectPlatform('videoCall')">远程视频</el-checkbox>
 
             <div class="flex flex-col md:flex-row md:items-center gap-3 md:col-span-2">
-              <el-checkbox v-model="stepData.discussionPlatform.other">其他</el-checkbox>
+              <el-checkbox v-model="stepData.discussionPlatform.other" :model-value="stepData.discussionPlatform.other"
+                @change="selectPlatform('other')">其他</el-checkbox>
               <el-input v-if="stepData.discussionPlatform.other" v-model="stepData.discussionPlatform.otherText"
                 placeholder="请填写其他开发生态" class="custom-input" />
             </div>

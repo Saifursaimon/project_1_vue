@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-5 items-start mb-12">
+  <div class="grid grid-cols-1 md:grid-cols-3  gap-5 items-start mb-12 largeGrid">
     <ProductCard v-for="product in filteredProducts" :key="product.id" :p="product" />
   </div>
 </template>
@@ -50,3 +50,11 @@ onMounted(async () => {
   }
 })
 </script>
+
+<style scoped>
+@media (min-width: 1920px) {
+  .largeGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+</style>

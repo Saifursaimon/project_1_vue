@@ -46,7 +46,7 @@ watch(
 
 // Date options
 const currentYear = new Date().getFullYear();
-const years = Array.from({ length: 50 }, (_, i) => currentYear - i);
+const years = Array.from({ length: 50 }, (_, i) => currentYear + i);
 const months = Array.from({ length: 12 }, (_, i) => i + 1);
 const days = Array.from({ length: 31 }, (_, i) => i + 1);
 </script>
@@ -87,7 +87,7 @@ const days = Array.from({ length: 31 }, (_, i) => i + 1);
           <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-36 mt-6">
             <div class="flex flex-col md:flex-row md:items-center w-full gap-2 md:gap-6">
               <label class="whitespace-nowrap">记录人</label>
-              <el-input v-model="stepData.recorder.name" clearable placeholder="请填写企业信息"
+              <el-input v-model="stepData.recorder.name" clearable placeholder="请填写记录人"
                 class="  py-3.5 custom-input " />
             </div>
             <div class="flex flex-col md:flex-row md:items-center gap-6">
