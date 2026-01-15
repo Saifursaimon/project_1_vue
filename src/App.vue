@@ -32,7 +32,7 @@ import { RouterView } from 'vue-router';
     background-size: cover;
     background-image: url('/images/bgxl.svg');
     width: 100%;
-    height: 334px;
+    height: 642px;
   }
 }
 
