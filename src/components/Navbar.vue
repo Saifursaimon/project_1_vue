@@ -11,7 +11,7 @@ const links = [
 </script>
 
 <template>
-  <div class="py-10 flex items-center justify-between">
+  <div class="md:py-10 flex items-center justify-between">
     <RouterLink to="/">
       <img :src="logo" alt="Logo" class="h-20 w-20 md:w-51.75 md:h-8.25" />
     </RouterLink>
