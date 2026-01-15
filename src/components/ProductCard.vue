@@ -21,7 +21,7 @@ defineProps({
         <!-- LEFT CONTENT -->
         <div class="flex flex-col ">
           <h2
-            :class="`text-xl mt-3 absolute top-5 font-semibold leading-tight ${p.thmbnl ? 'text-white' : 'text-[#2da8ff]'} `">
+            :class="`text-xl mt-4 absolute top-5 font-semibold leading-tight ${p.thmbnl ? 'text-white' : 'text-[#2da8ff]'} `">
             {{ p.name }}
           </h2>
         </div>
