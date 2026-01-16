@@ -28,9 +28,7 @@
 
       <!-- Right buttons -->
       <div class="flex gap-3 justify-end">
-        <el-button size="large" type="primary" @click="viewRecord(record.id)">
-          查看
-        </el-button>
+
 
         <el-button size="large" type="primary" plain @click="editRecord(record.id)">
           编辑
@@ -85,12 +83,10 @@ const formatDate = (date) => {
 };
 
 /* ---------- ACTIONS ---------- */
-const viewRecord = (id) => {
-  router.push(`/records/${id}`);
-};
+
 
 const editRecord = (id) => {
-  router.push(`/records/edit/${id}`);
+  router.push(`/records/${id}`);
 };
 
 const downloadPDF = async (id) => {

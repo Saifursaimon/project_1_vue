@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, reactive } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import Step1 from "@/components/Step1.vue";
 import PinLogin from "@/components/PinLogin.vue";
 import Step2 from "@/components/Step2.vue";
@@ -8,9 +8,10 @@ import Step3 from "@/components/Step3.vue";
 import Step4 from "@/components/Step4.vue";
 
 
-
+const route = useRoute()
 const router = useRouter();
 const authorized = ref(false);
+const recordId = route.params.id
 const step = ref(0);
 
 const steps = [
@@ -27,13 +28,36 @@ const formData = reactive({
   specialNeeds: {},
 });
 
+const loadRecord = async (id) => {
+  try {
+    const res = await fetch(
+      `https://backend-server-o6mn.onrender.com/records/${id}`
+    );
 
+    if (!res.ok) throw new Error("Failed to load record");
 
-onMounted(() => {
+    const data = await res.json();
+
+    // 🔥 Hydrate step data safely
+    formData.basicInfo = data.basicInfo || {};
+    formData.coreNeeds = data.coreNeeds || {};
+    formData.projectConstraints = data.projectConstraints || {};
+    formData.specialNeeds = data.specialNeeds || {};
+  } catch (err) {
+    console.error("Load record failed:", err);
+  }
+};
+
+onMounted(async () => {
   const verified = localStorage.getItem("record_pin_verified");
   if (verified === "true") {
     authorized.value = true;
   }
+
+  if (recordId) {
+    await loadRecord(recordId);
+  }
+
 });
 
 const handleLoginSuccess = () => {
@@ -55,28 +79,32 @@ const handleBack = () => {
 
 const handleFinalSubmit = async () => {
   try {
-    const res = await fetch("https://backend-server-o6mn.onrender.com/records", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        basicInfo: formData.basicInfo,
-        coreNeeds: formData.coreNeeds,
-        projectConstraints: formData.projectConstraints,
-        specialNeeds: formData.specialNeeds,
-      }),
-    });
+    const res = await fetch(
+      `https://backend-server-o6mn.onrender.com/records/${recordId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          basicInfo: formData.basicInfo,
+          coreNeeds: formData.coreNeeds,
+          projectConstraints: formData.projectConstraints,
+          specialNeeds: formData.specialNeeds,
+        }),
+      }
+    );
 
-    if (!res.ok) throw new Error("Submit failed");
-    console.log('saved to db')
+    if (!res.ok) throw new Error("Update failed");
+
+    console.log("updated in db");
 
     router.push("/records/lists");
   } catch (err) {
     console.error(err);
   }
-
 };
+
 </script>
 
 <template>

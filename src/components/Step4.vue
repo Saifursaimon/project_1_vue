@@ -35,6 +35,34 @@ const stepData = reactive({
   additionalNotes: "",
 });
 
+watch(
+  () => props.modelValue,
+  (val) => {
+    if (!val) return;
+
+    stepData.customerRequirements = val.customerRequirements ?? "";
+    stepData.negotiationIssues = val.negotiationIssues ?? "";
+    stepData.potentialRisks = val.potentialRisks ?? "";
+    stepData.internalFollowUp = val.internalFollowUp ?? "";
+
+    stepData.recorder.name = val.recorder?.name ?? "";
+    stepData.recorder.date.year = val.recorder?.date?.year ?? "";
+    stepData.recorder.date.month = val.recorder?.date?.month ?? "";
+    stepData.recorder.date.day = val.recorder?.date?.day ?? "";
+
+    stepData.contactPerson.name = val.contactPerson?.name ?? "";
+    stepData.contactPerson.position = val.contactPerson?.position ?? "";
+    stepData.contactPerson.phone = val.contactPerson?.phone ?? "";
+    stepData.contactPerson.wechat = val.contactPerson?.wechat ?? "";
+
+    stepData.assistant.name = val.assistant?.name ?? "";
+    stepData.assistant.phone = val.assistant?.phone ?? "";
+
+    stepData.additionalNotes = val.additionalNotes ?? "";
+  },
+  { immediate: true, deep: true }
+);
+
 
 watch(
   stepData,

@@ -11,7 +11,10 @@ const stepData = reactive({
   type: "", // '企业' | '个人' | ''
   companyName: "",
   personalName: "",
-  department: "",
+  department: {
+    value: "",
+    otherText: "",
+  },
   remark: "",
   contactPerson: {
     name: "",
@@ -43,13 +46,16 @@ const selectType = (value) => {
   // clear fields based on disabled logic
   if (stepData.type !== "企业") {
     stepData.companyName = "";
-    stepData.department = "";
+    stepData.department.value = "";
+    stepData.department.otherText = "";
   }
   if (stepData.type !== "个人") {
     stepData.personalName = "";
 
   }
 };
+
+
 
 const selectCollab = (key) => {
   Object.keys(stepData.collab).forEach((k) => {
@@ -75,15 +81,73 @@ const selectPlatform = (key) => {
   }
 };
 
+watch(
+  () => props.modelValue,
+  (val) => {
+    if (!val) return
+
+    stepData.type = val.type ?? ""
+    stepData.companyName = val.companyName ?? ""
+    stepData.personalName = val.personalName ?? ""
+    stepData.remark = val.remark ?? ""
+
+    stepData.department.value = val.department?.value ?? ""
+    stepData.department.otherText = val.department?.otherText ?? ""
+
+    stepData.contactPerson.name = val.contactPerson?.name ?? ""
+    stepData.contactPerson.position = val.contactPerson?.position ?? ""
+    stepData.contactPerson.phone = val.contactPerson?.phone ?? ""
+
+    stepData.collab.firstTime = val.collab?.firstTime ?? false
+    stepData.collab.repeat = val.collab?.repeat ?? false
+    stepData.collab.projectHistory = val.collab?.projectHistory ?? ""
+
+    stepData.discussionPlatform.companyOffice =
+      val.discussionPlatform?.companyOffice ?? false
+    stepData.discussionPlatform.clientOffice =
+      val.discussionPlatform?.clientOffice ?? false
+    stepData.discussionPlatform.videoCall =
+      val.discussionPlatform?.videoCall ?? false
+    stepData.discussionPlatform.other =
+      val.discussionPlatform?.other ?? false
+    stepData.discussionPlatform.otherText =
+      val.discussionPlatform?.otherText ?? ""
+  },
+  { immediate: true, deep: true }
+)
+
 
 // Sync reactive data to parent
 watch(
   stepData,
   (val) => {
-    Object.assign(props.modelValue, val);
+    props.modelValue.type = val.type;
+    props.modelValue.companyName = val.companyName;
+    props.modelValue.personalName = val.personalName;
+    props.modelValue.remark = val.remark;
+
+    props.modelValue.department = {
+      value: val.department.value,
+      otherText: val.department.otherText,
+    };
+
+    props.modelValue.contactPerson = { ...val.contactPerson };
+    props.modelValue.collab = { ...val.collab };
+    props.modelValue.discussionPlatform = { ...val.discussionPlatform };
   },
   { deep: true }
 );
+
+watch(
+  () => stepData.department.value,
+  (val) => {
+    if (val !== "其他") {
+      stepData.department.otherText = "";
+    }
+  }
+);
+
+
 </script>
 
 <template>
@@ -103,7 +167,7 @@ watch(
 
           <div class="md:w-3/4 space-y-4">
             <div>
-              <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-20">
+              <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-7">
 
                 <!-- 企业 -->
                 <div class="flex items-center w-full gap-3 md:gap-0">
@@ -118,7 +182,7 @@ watch(
                 <!-- 部门 -->
                 <div class="flex items-center gap-3 w-full">
                   <label class="whitespace-nowrap hidden md:flex">所属部门:</label>
-                  <el-select v-model="stepData.department" placeholder="请选择部门" :disabled="stepData.type !== '企业'"
+                  <el-select v-model="stepData.department.value" placeholder="请选择部门" :disabled="stepData.type !== '企业'"
                     class="rounded-lg md:px-4 py-2 custom-select">
                     <el-option label="研发" value="研发" />
                     <el-option label="市场" value="市场" />
@@ -127,8 +191,11 @@ watch(
                     <el-option label="财务" value="财务" />
                     <el-option label="行政" value="行政" />
                     <el-option label="法务" value="法务" />
+                    <el-option label="其他" value="其他" />
                   </el-select>
                 </div>
+                <el-input :disabled="stepData.department.value !== '其他'" v-model="stepData.department.otherText"
+                  clearable placeholder="请填写其他部门" class="md:px-6 py-3.5 custom-input" />
               </div>
 
               <!-- 个人 -->

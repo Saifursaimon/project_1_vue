@@ -33,6 +33,60 @@ const stepData = reactive({
   },
 });
 
+watch(
+  () => props.modelValue,
+  (val) => {
+    if (!val) return;
+
+    stepData.reason = val.reason ?? "";
+    stepData.objective = val.objective ?? "";
+    stepData.userGoal = val.userGoal ?? "";
+
+    stepData.projectName.provisionalName =
+      val.projectName?.provisionalName ?? "";
+    stepData.projectName.officialName =
+      val.projectName?.officialName ?? "";
+
+    stepData.referenceApp = val.referenceApp ?? "";
+    stepData.coreFunctions = val.coreFunctions ?? "";
+
+    stepData.developmentEcosystem.web =
+      val.developmentEcosystem?.web ?? false;
+    stepData.developmentEcosystem.ios =
+      val.developmentEcosystem?.ios ?? false;
+    stepData.developmentEcosystem.android =
+      val.developmentEcosystem?.android ?? false;
+    stepData.developmentEcosystem.wechatMiniProgram =
+      val.developmentEcosystem?.wechatMiniProgram ?? false;
+    stepData.developmentEcosystem.wechatOfficialAccount =
+      val.developmentEcosystem?.wechatOfficialAccount ?? false;
+    stepData.developmentEcosystem.other =
+      val.developmentEcosystem?.other ?? false;
+    stepData.developmentEcosystem.otherText =
+      val.developmentEcosystem?.otherText ?? "";
+
+    stepData.pageStyle.companySpecific =
+      val.pageStyle?.companySpecific ?? false;
+    stepData.pageStyle.other =
+      val.pageStyle?.other ?? false;
+    stepData.pageStyle.otherText =
+      val.pageStyle?.otherText ?? "";
+
+    stepData.riskAvoidance = val.riskAvoidance ?? "";
+
+    stepData.technicalPreferences.domainAndServer =
+      val.technicalPreferences?.domainAndServer ?? "";
+    stepData.technicalPreferences.techStack =
+      val.technicalPreferences?.techStack ?? "";
+    stepData.technicalPreferences.systemIntegration =
+      val.technicalPreferences?.systemIntegration ?? "";
+    stepData.technicalPreferences.other =
+      val.technicalPreferences?.other ?? "";
+  },
+  { immediate: true, deep: true }
+);
+
+
 // Sync with parent via v-model
 watch(
   stepData,

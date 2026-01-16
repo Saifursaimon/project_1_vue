@@ -13,6 +13,23 @@ const stepData = reactive({
   other: "",
 });
 
+
+watch(
+  () => props.modelValue,
+  (val) => {
+    if (!val) return;
+
+    stepData.date.year = val.date?.year ?? "";
+    stepData.date.month = val.date?.month ?? "";
+    stepData.date.day = val.date?.day ?? "";
+
+    stepData.budgetControll = val.budgetControll ?? "";
+    stepData.other = val.other ?? "";
+  },
+  { immediate: true, deep: true }
+);
+
+
 // Sync with parent via v-model
 watch(
   stepData,
