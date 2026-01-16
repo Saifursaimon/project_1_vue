@@ -14,7 +14,7 @@
         <div class="flex flex-wrap gap-6 mt-2 text-sm text-gray-500">
           <span>
             洽谈编号：
-            <span class="text-gray-700">{{ record.id }}</span>
+            <span class="text-gray-700"> {{ formatRecordId(record) }}</span>
           </span>
 
           <span>
@@ -58,6 +58,20 @@ import addIcon from "/images/add-icon.svg";
 const router = useRouter();
 const records = ref([]);
 const loading = ref(false);
+
+
+
+
+const formatRecordId = (record) => {
+  if (!record || !record.id || !record.createdAt) return "-";
+
+  const date = new Date(record.createdAt);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const id = String(record.id).padStart(3, "0"); // 3-digit padding
+
+  return `DH-${year}${month}${id}`;
+};
 
 /* ---------- FETCH RECORDS ---------- */
 const fetchRecords = async () => {
